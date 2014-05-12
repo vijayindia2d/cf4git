@@ -23,10 +23,17 @@ $(function() {
             $.ajax({
                 url: "https://api.github.com/repos/" + cf4git.owner + "/" + cf4git.project + "/contents/README.md",
                 success: function(readMe) {
-                    cf4git.html(""+readMe.content);
+                    cf4git.html(""+readMe);
                 },
+                headers: {
+                          Accept : "application/vnd.github.v3.raw",
+                                      },
+                // accepts: { 'application/vnd.github.v3.raw' },
+                //  beforeSend: function(xhr){
+                //   xhr.overrideMimeType( "application/vnd.github.v3.raw" );
+              // },
                 error: function(error) {
-                    alert('e');
+                  console.log(error);
                 }
             });
         };
